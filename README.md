@@ -1,3 +1,2 @@
 # restaurant_app
-irakli
-khutsidze
+dkakdakda
