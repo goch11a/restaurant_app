@@ -15,5 +15,5 @@ def header_():
         csv_writer.writerow(header)  
 
 def check_user(suername):
-    ...
+    print("irakli")
 
