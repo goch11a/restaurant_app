@@ -6,14 +6,17 @@ from tabulate import tabulate
 
 fields = ['N', 'Dish', 'Price']
 filename = "menu.csv"
-
+items = []
 
 def main():
     num = input("num: ")
     if num == "1":
         new_dish()
-    else:
+    elif num == "2":
         edit_dish()
+    else:
+        delete_dish()
+    
 
 
 def new_dish():
@@ -49,7 +52,7 @@ def new_dish():
 
 
 def edit_dish():
-    items = []
+    #items = []
     
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -77,10 +80,10 @@ def edit_dish():
     
     dish_position = dish_order - 1
     if change_item in ["D","Dish"]:
-        cheange = "Dish"
+        change = "Dish"
         new_dish_value = (input("Enter new value: ").title()).strip()
     else:
-        cheange = "Price"
+        change = "Price"
         while True:
             try:
                 new_dish_value = int(input("Enter new value: ").strip())
@@ -89,8 +92,39 @@ def edit_dish():
                 print("Only digits!")
     
     df = pd.read_csv(filename)
-    df.loc[dish_position, cheange] = new_dish_value
+    df.loc[dish_position, change] = new_dish_value
     df.to_csv(filename, index=False)
 
+
+def delete_dish():
+    #ეს შეიძლება ცალკე გავიდეს და ზოგად ცვლადად ჩამოყალიბდეს თაბულეიტამდე
+    
+    with open(filename, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for item in reader:
+            items.append(item)
+    
+    if items:
+        print(tabulate(items, headers="keys", tablefmt="grid"))
+
+    while True:
+        try:
+            dish_order = int(input("Choose order of dish, which you want to delete: ").strip())
+            break
+        except ValueError :
+            print("Only digits!")
+        
+    items.pop(dish_order - 1)
+
+    with open(filename, "w", newline='')as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fields)
+        writer.writeheader()
+        for n, i in enumerate(items):
+            i['N'] = n + 1
+            writer.writerow(i)
+
+
+def get_order():
+    ...
 
 main()
