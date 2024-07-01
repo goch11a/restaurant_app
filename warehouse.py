@@ -3,17 +3,20 @@ import pandas as pd
 from tabulate import tabulate
 
 fields = ['N', 'Product', 'Unit','Quantity', 'Unit price','Sum']
-filename = "warefouse.csv"
-items = []
+filename = "warehouse.csv"
+items = [] 
 
+    #print((items[0])['Quantity'])
 
 def main():
-    balance_warehouse()
+    #ვალიდაციაა დასამატებელი თუ სამზარეულოს აინტერესებს და თუ ბუღალტერიას აინტერესებს
+    accountant_warehouse()
+    #kitchen_warehouse()
     admin_order = input("Add product: ")
     if admin_order == "1":
         new_product()
 
-def balance_warehouse():
+def accountant_warehouse():
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for item in reader:
@@ -21,7 +24,16 @@ def balance_warehouse():
     
     if items:
         print(tabulate(items, headers="keys", tablefmt="grid"))
-
+        
+def kitchen_warehouse():
+    with open(filename, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            filtered_row = {key: row[key] for key in ['N', 'Product', 'Unit', 'Quantity']}
+            items.append(filtered_row)
+    
+    if items:
+        print(tabulate(items, headers="keys", tablefmt="grid"))
 
 def new_product():
     product_name = input("Name of product:  ").strip()
@@ -58,6 +70,11 @@ def new_product():
         writer.writerows(mydict)
 
 def drop_product():
+    ...
+
+
+
+def dish_cost():
     ...
 
 

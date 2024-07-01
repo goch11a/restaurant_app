@@ -16,23 +16,23 @@ departments = {
                         ], 
         'accountant management': [
                                 'get financial report',
-                                'get warehouse balance',
+                                'get warehouse balance',#
                                 'calculate dish cost',
                                 'add new distributor',
                                 'pay debt',
                                 'pay salaries',
                                 ], 
         'warehouse management': [
-                                'get warehouse balance',
-                                'add new product',
+                                'get warehouse balance',#
+                                'add new product',#
                                 'extract product',
                                 'drop product',
                                 ],
         'kitchen management': [
-                                'add new dish',
-                                'edit dish',
-                                'delete dish',
-                                'get orders',
+                                'add new dish',#
+                                'edit dish',#
+                                'delete dish',#
+                                'get orders',#
                                 'prepare orders',
                                 'give orders',
                                 ], 
