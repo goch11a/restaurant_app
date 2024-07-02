@@ -3,21 +3,14 @@ import pandas as pd
 from tabulate import tabulate
 
 fields = ['N', 'Product', 'Unit','Quantity', 'Unit price','Sum']
-filename = "warehouse.csv"
+filename3 = "warehouse.csv"
 items = [] 
 
-    #print((items[0])['Quantity'])
+   
 
-def main():
-    #ვალიდაციაა დასამატებელი თუ სამზარეულოს აინტერესებს და თუ ბუღალტერიას აინტერესებს
-    accountant_warehouse()
-    #kitchen_warehouse()
-    admin_order = input("Add product: ")
-    if admin_order == "1":
-        new_product()
 
 def accountant_warehouse():
-    with open(filename, newline='') as csvfile:
+    with open(filename3, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for item in reader:
             items.append(item)
@@ -26,7 +19,7 @@ def accountant_warehouse():
         print(tabulate(items, headers="keys", tablefmt="grid"))
         
 def kitchen_warehouse():
-    with open(filename, newline='') as csvfile:
+    with open(filename3, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             filtered_row = {key: row[key] for key in ['N', 'Product', 'Unit', 'Quantity']}
@@ -49,7 +42,7 @@ def new_product():
         
     
     try:
-        with open(filename, 'r', newline='') as csvfile:
+        with open(filename3, 'r', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             rows = list(reader)
             if rows:
@@ -63,19 +56,38 @@ def new_product():
     
     mydict = [{'N': new_num, 'Product': product_name.title() , 'Unit': unit.title() ,'Quantity': quantity, 'Unit price' : unit_price,'Sum': sum}]
     
-    with open(filename, 'a', newline= '') as csvfile:
+    with open(filename3, 'a', newline= '') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fields)
         if last_num == 0:
             writer.writeheader()
         writer.writerows(mydict)
 
 def drop_product():
-    ...
+    with open(filename3, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for item in reader:
+            items.append(item)
+    
+    if items:
+        print(tabulate(items, headers="keys", tablefmt="grid"))
+
+    while True:
+        try:
+            order_number = int(input("Enter the order number of the product to drop: ").strip())
+            break
+        except ValueError:
+            print("Please enter a valid order number.")
+
+    try:
+        df = pd.read_csv(filename3)
+        if order_number in df['N'].values:
+            df.loc[df['N'] == order_number, ['Quantity', 'Sum']] = 0
+            df.to_csv(filename3, index=False)
+            print("Product quantity updated successfully.")
+        else:
+            print("Order number not found.")
+    except FileNotFoundError:
+        print("Warehouse file not found.")
 
 
 
-def dish_cost():
-    ...
-
-
-main()

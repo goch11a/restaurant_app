@@ -9,19 +9,9 @@ fields2 = ['N', 'Dish', 'Ingredient','Unit', 'Quantity']
 filename = "menu.csv"
 filename2 = "dish_ingredients.csv"
 filename3 = "warehouse.csv"
+filename4 = "incomes.csv"
 items = []
 
-#print((items[0])['Price'])
-
-def main():
-    num = input("num: ")
-    if num == "1":
-        new_dish()
-        calculate_dish_costs()
-    elif num == "2":
-        edit_dish()
-    else:
-        delete_dish()
     
 
 #----------------------------------------------------------------------------
@@ -126,7 +116,7 @@ def calculate_dish_costs():
     for dish, cost in dish_costs.items():
         print(f"The cost of {dish} is: {cost:.2f}Lari")
 
-    # ამის ქვევით რაცაა ეგ მენიუსთვისაა
+    
 
 #--------------------------------------------------------------------
 def edit_dish():
@@ -228,4 +218,3 @@ def delete_dish():
 
     
 
-main()

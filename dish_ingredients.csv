@@ -9,4 +9,5 @@ N,Dish,Ingredient,Unit,Quantity
 8,Hamburger,Salad,Kg,0.02
 9,Hamburger,Sauce,Kg,0.01
 10,French Fries,Frozen Potatoes,Kg,0.3
-11,Coca-Cola,Coca-Cole,L,0.3
+11,Coca,Coca,L,0.3
+
