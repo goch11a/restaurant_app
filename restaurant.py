@@ -49,7 +49,11 @@ def main():
                 
                     
                     
-                
+              git status
+git add .
+git status
+git commit -m "irakli"
+git push origin main  
                     
 
         
