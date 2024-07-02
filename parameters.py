@@ -47,3 +47,6 @@ departments = {
             ]
 }
 
+# initiate = departments["admin"][0]["initiate restorant"]
+# for i in initiate: 
+#     print(i)
