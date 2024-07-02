@@ -20,8 +20,6 @@ def main():
         calculate_dish_costs()
     elif num == "2":
         edit_dish()
-    elif num == "3":
-        get_order()
     else:
         delete_dish()
     
@@ -67,7 +65,7 @@ def new_dish():
     
     while True:
         try:
-            dish_price = float(input("Price of dish: ").strip())
+            dish_price = float(input("Price of dish in menu: ").strip())
             break
         except ValueError :
             print("Only digits!")
@@ -226,44 +224,7 @@ def delete_dish():
             writer.writerow(row)
 
 #-------------------------------------------------------
-def get_order():
-    
-    with open(filename, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for item in reader:
-            items.append(item)
-    
-    if items:
-        print(tabulate(items, headers="keys", tablefmt="grid"))
-    
 
-    order_list = []
-    order_sum = []
-
-    while True:
-        try:
-            order_num = int(input("Choose order of dish, which you want to choose: ").strip())
-        except ValueError :
-            print("Only digits!")
-        add_order = input("Do you want something else? Y/N\nAnswer: ").lower()
-        if add_order not in ["y","n"]:
-            raise ValueError("Enter valid input!")
-        elif add_order == "y":
-            order = (items[order_num - 1])['Dish']
-            order_list.append(order)
-            order_price = (items[order_num - 1])['Price']
-            order_sum.append(order_price)
-            continue
-        else:
-            order = (items[order_num - 1])['Dish']
-            order_list.append(order)
-            order_price = (items[order_num - 1])['Price']
-            order_sum.append(order_price)
-            break
-    
-    # ეს უნდა დარეთარნდეს, გამოიპრინტოს და ფასები დაჯამდეს
-    print(order_list)
-    print(order_sum) 
 
     
 

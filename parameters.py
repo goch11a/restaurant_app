@@ -15,9 +15,9 @@ departments = {
                         'delete user',
                         ], 
         'accountant management': [
-                                'get financial report',
+                                'get financial report',#
                                 'get warehouse balance',#
-                                'calculate dish cost',
+                                'calculate dish cost',#
                                 'add new distributor',
                                 'pay debt',
                                 'pay salaries',
@@ -37,7 +37,7 @@ departments = {
                                 'give orders',
                                 ], 
         'waiters management': [
-                                'get order',
+                                'get order',#
                                 'add order to kitchen',
                                 'get order from kitchen',
                                 'give order to client'
