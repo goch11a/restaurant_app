@@ -9,6 +9,7 @@ filename3 = "warehouse.csv"
 filename4 = "incomes.csv"
 items = []
 
+#იღებს და ამუშავებს შეკვეთას
 def get_order():
     print("Hello, welcome to Burger Bar Krikina")
     with open(filename, newline='') as csvfile:
@@ -53,6 +54,7 @@ def get_order():
     print("Please wait while the order is being processed.")
     return table_data, sum_pay
 
+#შეკვეთიდან იღებს ინგრედიენტებს და თვლის რაოდენობას
 def get_ingredients(order_list):
     dish_ingredients = {}
 
@@ -81,6 +83,7 @@ def get_ingredients(order_list):
     
     return ingredients_list
 
+#ამოწმებს მარაგებში და ანახლებს მარაგებს
 def check_and_update_warehouse(ingredients_needed):
     warehouse = {}
     
@@ -124,6 +127,7 @@ def check_and_update_warehouse(ingredients_needed):
     
     return True
 
+#იწერს შემოსავალს და აჯამებს
 def record_income(income):
     if not os.path.exists(filename4):
         with open(filename4, 'w', newline='') as csvfile:
@@ -137,3 +141,17 @@ def record_income(income):
             next(reader)  
             order_number = sum(1 for row in reader)
         writer.writerow([order_number + 1, income])
+
+def income_total():
+    total_sum = 0
+    rows = []
+
+    with open(filename4, 'r', newline='') as readfile:
+        reader = csv.reader(readfile)
+        headers = next(reader)  # Get header
+        for row in reader:
+            total_sum += float(row[1])
+            rows.append(row)
+
+    print(tabulate(rows, headers=headers, tablefmt='grid'))
+    print(f"\nToday's total income is {total_sum}")

@@ -8,7 +8,7 @@ items = []
 
    
 
-
+#პრინტავ მარაგებს ფასებით
 def accountant_warehouse():
     with open(filename3, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -17,7 +17,8 @@ def accountant_warehouse():
     
     if items:
         print(tabulate(items, headers="keys", tablefmt="grid"))
-        
+
+#პრინტავს მარაგებს ფასების გარეშე      
 def kitchen_warehouse():
     with open(filename3, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -28,6 +29,7 @@ def kitchen_warehouse():
     if items:
         print(tabulate(items, headers="keys", tablefmt="grid"))
 
+#ახალი პროდუქტის საწყობში დამატება
 def new_product():
     product_name = input("Name of product:  ").strip()
     unit = input("Name of unit:  ").strip()
@@ -62,6 +64,7 @@ def new_product():
             writer.writeheader()
         writer.writerows(mydict)
 
+#დაძველებული პროდუქტის გადაგდება საწყობიდან
 def drop_product():
     with open(filename3, newline='') as csvfile:
         reader = csv.DictReader(csvfile)

@@ -14,7 +14,7 @@ items = []
 
     
 
-#----------------------------------------------------------------------------
+#ახალი კერძის დამატება ინგრედიენტებით
 def new_dish():
     dish_name = input("Name of dish:  ").strip()
     ingredients = input("Input ingredients(use comma):  ")
@@ -82,6 +82,7 @@ def new_dish():
             writer.writeheader()
         writer.writerows(mydict)
 
+#თვლის კერძის თვითღირებულებას
 def calculate_dish_costs():
     ingredients = []
     products = {}
@@ -118,7 +119,7 @@ def calculate_dish_costs():
 
     
 
-#--------------------------------------------------------------------
+#მენიუში ცვლილების შეტანა
 def edit_dish():
     #items = []
     
@@ -163,14 +164,14 @@ def edit_dish():
     df.loc[dish_position, change] = new_dish_value
     df.to_csv(filename, index=False)
 
-    # Update dish name in dish_ingredients.csv using pandas
+  
     if change == "Dish":
         df_ingredients = pd.read_csv(filename2)
         df_ingredients.loc[df_ingredients['Dish'] == old_dish_name, 'Dish'] = new_dish_value
         df_ingredients.to_csv(filename2, index=False)
-#--------------------------------------------------------------------------
+
+#კერძის ამოშლა მენიუდან
 def delete_dish():
-    #ეს შეიძლება ცალკე გავიდეს და ზოგად ცვლადად ჩამოყალიბდეს თაბულეიტამდე
     
     with open(filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
